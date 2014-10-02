@@ -2,7 +2,7 @@
 
 This Leiningen template allows you to create Vagrant-powered ready-to-hack
 Clojure/Datomic applications. If you want use Vagrant in an existing project,
-take a look at [[clj-vagrant-template][clj-vagrant-sample]] from where you can copy the files necessary
+take a look at [[https://github.com/alexander-yakushev/clj-vagrant-sample][clj-vagrant-sample]] from where you can copy the files necessary
 for Vagrant and Ansible.
 
 ** Installation
