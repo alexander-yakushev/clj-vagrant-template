@@ -1,0 +1,12 @@
+# -*- mode: yaml -*-
+---
+lein_dir: /usr/local/bin/lein
+project_name: {{name}}
+project_root: /var/projects/{{name}}
+system_packages:
+  - git
+  - openjdk-7-jre-headless
+  - wget
+  - unzip
+  - screen
+  - htop

@@ -1,0 +1,78 @@
+* clj-vagrant-template
+
+This Leiningen template allows you to create Vagrant-powered ready-to-hack
+Clojure/Datomic applications. If you want use Vagrant in an existing project,
+take a look at [[clj-vagrant-template][clj-vagrant-sample]] from where you can copy the files necessary
+for Vagrant and Ansible.
+
+** Installation
+
+   You'll obviously need [[http://leiningen.org/][Leiningen]]. You will also have to install the following
+   packages from your OS repositories:
+
+   - [[https://www.vagrantup.com/][Vagrant]]
+   - [[http://www.ansible.com/get-started][Ansible]] (used for provisioning Vagrant)
+
+** Usage
+
+   Create a new Clojure/Datomic project by executing:
+
+   : lein new vagrant myproject +datomic
+
+   You can also omit =+datomic= argument if you don't need it. Then you'll get
+   an ordinary Clojure project run inside VM.
+
+   After the project is created go inside and do:
+
+   : vagrant up
+
+   When run for the first time this command will take a solid while to
+   complete. Here's a brief summary about what it does:
+
+   - downloads Ubuntu 14.04 image
+   - creates a new virtual machine
+   - installs necessary packages (like Git and OpenJDK)
+   - fetches all dependencies for the project
+   - downloads and installs Datomic
+
+   After the provisioning completes you will have a development-ready virtual
+   machine where:
+
+   - Datomic runs on 4334 inside port
+   - headless REPL runs on 4242 port forwarded outside
+
+   So you can fire up [[https://github.com/clojure-emacs/cider][CIDER]] straight away and do =M-x cider-connect localhost
+   4242= to connect to the remote REPL running inside the VM (or use any other
+   nREPL-compatible editor/IDE).
+
+** Management
+
+   Both Datomic and nREPL are run as Upstart services. In order to manipulate
+   them you'll have to =vagrant ssh= inside the machine. Then you can do:
+
+   : sudo {start/stop/restart/status} nrepl
+   : sudo {start/stop/restart/status} datomic
+
+   Restarting nREPL will prove necessary when, for example, you add new
+   dependencies to your project.
+
+   For more information on how to use Vagrant please consult its [[http://docs.vagrantup.com/v2/][official
+   documentation]].
+
+** Troubleshooting
+
+*** CIDER can't connect, prints "make client process failed: connection refused"
+
+    It is possible that nREPL hasn't yet started (especially after manual =sudo
+    restart nrepl=). Try again in a few seconds.
+
+** Acknowledgment
+
+   I thank [[https://github.com/flyingmachine][Daniel Higginbotham]] for [[https://github.com/flyingmachine/gratefulplace2/][Grateful Place]] source code which I took as
+   the initial reference and borrowed code from, and for his [[http://www.flyingmachinestudios.com/programming/building-a-forum-with-clojure-datomic-angular/][blog post]] where he
+   in details explained his Clojure/Datomic/Vagrant setup.
+
+** License
+
+   Copyright © 2014 Alexander Yakushev. Distributed under the Eclipse Public
+   License, the same as Clojure. See the file [[https://github.com/clojure-android/lein-droid/blob/master/COPYING][COPYING]].
