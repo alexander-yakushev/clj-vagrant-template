@@ -1,3 +1,4 @@
+{{#datomic?}}
 (ns {{name}}.core
   (:require [datomic.api :as d]))
 
@@ -19,3 +20,9 @@
   (d/q '[:find ?e
          :where [?e :db/doc "Hello world"]]
        (d/db conn)))
+{{/datomic?}}
+{{^datomic?}}
+(ns {{name}}.core)
+
+(def test (+ 1 2 3))
+{{/datomic?}}
