@@ -2,7 +2,7 @@
 
 This Leiningen template allows you to create Vagrant-powered ready-to-hack
 Clojure/Datomic applications. If you want use Vagrant in an existing project,
-take a look at [[https://github.com/alexander-yakushev/clj-vagrant-sample][clj-vagrant-sample]] from where you can copy the files necessary
+take a look at the [[https://github.com/alexander-yakushev/clj-vagrant-template/tree/master/sample][sample project]] from where you can copy the files necessary
 for Vagrant and Ansible.
 
 ** Installation
@@ -20,7 +20,7 @@ for Vagrant and Ansible.
    : lein new vagrant myproject +datomic
 
    You can also omit =+datomic= argument if you don't need it. Then you'll get
-   an ordinary Clojure project run inside VM.
+   an ordinary Clojure project running inside VM.
 
    After the project is created go inside and do:
 
